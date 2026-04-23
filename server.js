@@ -55,24 +55,7 @@ prilozhenie.get('/api/zagruzit', async (zapros, otvet) => {
     otvet.setHeader('X-Content-Length', obshiyRazmer);
 
     if (otvetOtSayta.body) {
-      const chitatel = otvetOtSayta.body.getReader();
-      const potok = new ReadableStream({
-        start(kontrollyor) {
-          function chitatDaley() {
-            chitatel.read().then(({ done, value }) => {
-              if (done) {
-                kontrollyor.close();
-                return;
-              }
-              kontrollyor.enqueue(value);
-              chitatDaley();
-            }).catch(err => kontrollyor.error(err));
-          }
-          chitatDaley();
-        }
-      });
-      const uzelPotok = new require('stream').Readable().wrap(potok);
-      uzelPotok.pipe(otvet);
+      otvetOtSayta.body.pipe(otvet);
     } else {
       const tekst = await otvetOtSayta.text();
       otvet.send(tekst);
