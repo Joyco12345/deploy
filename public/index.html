@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Сбор информации из интернета</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="konteyner">
+    <h1>Сбор информации из интернета</h1>
+
+    <section class="poisk">
+      <h2>Поиск URL по ключевому слову</h2>
+      <input type="text" id="poleVvodaSlova" placeholder="Например: javascript" />
+      <button id="knopkaPoisk">Найти</button>
+      <div id="blokSpiskaUrl" style="display: none;">
+        <h3>Найденные адреса:</h3>
+        <select id="vyborUrl" size="5"></select>
+        <button id="knopkaZagruzit">Скачать выбранный URL</button>
+      </div>
+      <div id="oshibkaPoiska" class="oshibka"></div>
+    </section>
+
+    <section class="zagruzka">
+      <h2>Статус загрузки</h2>
+      <div id="informatsiyaProgres">Ожидайте...</div>
+      <progress id="polosaProgressa" value="0" max="100"></progress>
+    </section>
+
+    <section class="sohranennoe">
+      <h2>Сохранённые страницы (LocalStorage)</h2>
+      <div id="blokSohranennyh">
+        <select id="vyborSohranennogo" size="5"></select>
+        <button id="knopkaProsmotr">Просмотреть</button>
+        <button id="knopkaUdalit">Удалить выбранное</button>
+      </div>
+      <div id="panelProsmotra" style="display: none;">
+        <h3>Просмотр сохранённой страницы</h3>
+        <iframe id="freymKontenta" sandbox="allow-same-origin"></iframe>
+        <button id="knopkaZakrytProsmotr">Закрыть</button>
+      </div>
+      <div id="oshibkaSohranennogo" class="oshibka"></div>
+    </section>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
